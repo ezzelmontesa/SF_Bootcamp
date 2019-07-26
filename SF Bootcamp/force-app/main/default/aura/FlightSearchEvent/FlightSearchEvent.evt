@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="flightFrom" type="string"/>
+    <aura:attribute name="flightTo" type="string"/>
+    <aura:attribute name="departDate" type="string"/>
+</aura:event>

@@ -1,0 +1,30 @@
+<aura:component controller="DonationsController" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="donationList" type="Donation__c[]" />
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:handler name="createDonation" event="c:addDonationEvent" action="{!c.handleCreateDonation}"/>
+        
+    <div>        
+        <!-- PAGE HEADER -->
+        <lightning:layout class="slds-page-header slds-page-header--object-home">
+            <lightning:layoutItem>
+                <lightning:icon iconName="standard:add_file" alternativeText="Add Donation"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="page-section page-header">
+                    <h1 class="slds-text-heading--label">Donation</h1>
+                    <h2 class="slds-text-heading--medium">Add Donation</h2>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <!-- / PAGE HEADER -->
+        
+        <!-- NEW DONATION FORM -->
+        <c:DonationForm />
+        <!-- / NEW DONATION FORM -->
+        
+    </div>
+    
+    <c:DonationList donations="{!v.donationList}" />
+    
+</aura:component>

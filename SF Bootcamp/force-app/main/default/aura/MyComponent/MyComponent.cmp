@@ -1,0 +1,9 @@
+<aura:component controller="MyComponentController">
+    <aura:attribute name="accounts" type="Account[]"/>    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:iteration items="{!v.accounts}" var="account" >
+    	{#account.Name}
+    </aura:iteration>
+    
+</aura:component>

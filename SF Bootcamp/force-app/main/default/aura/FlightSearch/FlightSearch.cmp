@@ -1,0 +1,44 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="flightFrom" type="string"/>
+    <aura:attribute name="flightTo" type="string"/>
+    <aura:attribute name="departDate" type="string"/>
+        
+    <!-- COMPONENT HEADER -->
+    <lightning:layout class="slds-page-header slds-page-header--object-home slds-theme_default">
+        <lightning:layoutItem>
+            <lightning:icon iconName="custom:custom20" alternativeText="Flight Results"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h1 class="slds-text-heading--medium">Where would you like to go?</h1>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!-- / COMPONENT HEADER -->
+    
+    <div class="slds-box slds-theme_default">
+        <!-- NEW SEARCH FORM -->
+        <lightning:recordEditForm aura:id="searchFlights" objectApiName="Flight__c">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col">
+                    <span><lightning:inputField fieldName="Flight_From__c" value="{!v.flightFrom}" /></span>
+                </div>
+                <div class="slds-col">
+                    <span><lightning:inputField fieldName="Flight_To__c" value="{!v.flightTo}" /></span>
+                </div>
+            </div>
+            
+            <lightning:inputField fieldName="Departure_Date__c" value="{!v.departDate}" />
+            
+            <div class="slds-align_absolute-center">
+                <lightning:button label="Find Flights" 
+                                  class="slds-m-top--medium"
+                                  variant="brand"
+                                  onclick="{!c.searchFlight}"/>
+            </div>            
+            
+        </lightning:recordEditForm>   
+        <!-- / NEW SEARCH FORM -->
+    </div>
+    
+</aura:component>
