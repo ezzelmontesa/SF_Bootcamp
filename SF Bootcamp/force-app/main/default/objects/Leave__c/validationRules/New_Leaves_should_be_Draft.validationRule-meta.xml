@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>New_Leaves_should_be_Draft</fullName>
-    <active>true</active>
-    <description>Newly created leaves should be first set to draft.</description>
-    <errorConditionFormula>IF( ISNEW(),  
-    IF( ISPICKVAL( Leave_Status__c , &#39;DRAFT&#39;), FALSE, TRUE)  , FALSE )</errorConditionFormula>
-    <errorMessage>Please set your leave status to draft.</errorMessage>
-</ValidationRule>

@@ -1,3 +1,0 @@
-<aura:event type="COMPONENT" >
-    <aura:attribute name="donation" type="Donation__c" />
-</aura:event>
