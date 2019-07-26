@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    
+    <aura:attribute name="inputMessage" type="String" />
+    <aura:attribute name="outputMessage" type="String"/>
+    
+    <lightning:input value="{!v.inputMessage}" label="Enter message: "/>
+    
+	<button onclick="{!c.sayHello}">Say Hello!</button>
+    
+    <ui:outputText value="{!v.outputMessage}"/>   
+    
+    
+</aura:component>

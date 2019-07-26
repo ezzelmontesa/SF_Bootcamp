@@ -1,0 +1,57 @@
+<aura:component controller="FlightController" implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId" access="global">    
+    <aura:attribute name="flightList" type="Flight__c[]"/>
+    <aura:attribute name="flightListSize" type="Integer"/>
+    <aura:attribute name="column" type="List" />
+    <aura:attribute name="selectedFlight" type="Flight__c"/>
+    <aura:attribute name="isModalOpen" type="boolean"/>
+    <aura:attribute name="isFlightSelected" type="boolean"/>    
+    <aura:attribute name="hasNoResults" type="boolean"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler event="c:FlightSearchEvent" action="{!c.handleSearchFlights}"/>
+    <aura:handler event="c:OpenCloseModal" action="{!c.closeModalHandler}"/>
+    
+    <!-- COMPONENT HEADER -->    
+    <lightning:layout class="slds-page-header slds-page-header--object-home slds-theme_default">
+        <lightning:layoutItem>
+            <lightning:icon iconName="custom:custom106" alternativeText="Flight Results"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h2 class="slds-text-heading--medium">Flight Results</h2>
+            </div>
+        </lightning:layoutItem>
+        <lightning:layoutItem alignmentBump="left">
+            <div class="slds-builder-toolbar__actions slds-align_absolute-center">
+                <aura:if isTrue="{!v.isFlightSelected}">
+                    <lightning:button class="slds-button slds-button_brand" label="Book Flight" onclick="{!c.openModal}" disabled="true"/>
+                    <aura:set attribute="else">
+                        <lightning:button class="slds-button slds-button_brand" label="Book Flight" onclick="{!c.openModal}"/>
+                    </aura:set>
+                </aura:if>                
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!-- / COMPONENT HEADER -->
+    <aura:if isTrue="{!v.hasNoResults}">
+        <div class="slds-box slds-theme_default">
+        	<div class="slds-text-title_caps lds-text-align_center">NO BOOKING RESULTS AVAILABLE</div>
+        </div>
+        <aura:set attribute="else">
+            <div class="slds-box slds-theme_default">
+                <lightning:datatable
+                                     keyField="ID"
+                                     data="{!v.flightList}"
+                                     columns="{!v.column}"
+                                     onrowselection="{!c.getSelectedFlight}" 
+                                     maxRowSelection="1"/>
+            </div>
+        </aura:set>
+    </aura:if>
+    
+    
+    <aura:if isTrue="{!v.isModalOpen}">
+        <c:CreateBooking/>
+    </aura:if>
+    
+</aura:component>
